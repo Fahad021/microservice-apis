@@ -59,8 +59,8 @@ def before_pay_order(transaction):
         json={"order": [{"product": "string", "size": "small", "quantity": 1}]},
     )
     id_ = response.json()["id"]
-    transaction["fullPath"] = "/orders/" + id_ + "/pay"
-    transaction["request"]["uri"] = "/orders/" + id_ + "/pay"
+    transaction["fullPath"] = f"/orders/{id_}/pay"
+    transaction["request"]["uri"] = f"/orders/{id_}/pay"
 
 
 @dredd_hooks.before(
@@ -72,8 +72,8 @@ def before_cancel_order(transaction):
         json={"order": [{"product": "string", "size": "small", "quantity": 1}]},
     )
     id_ = response.json()["id"]
-    transaction["fullPath"] = "/orders/" + id_ + "/cancel"
-    transaction["request"]["uri"] = "/orders/" + id_ + "/cancel"
+    transaction["fullPath"] = f"/orders/{id_}/cancel"
+    transaction["request"]["uri"] = f"/orders/{id_}/cancel"
 
 
 @dredd_hooks.before("/orders > Creates an order > 422 > application/json")

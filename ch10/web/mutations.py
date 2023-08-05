@@ -36,15 +36,15 @@ def resolve_add_product(*_, name, type, input):
         'lastUpdated': datetime.utcnow(),
     }
     if type == 'cake':
-        product.update({
+        product |= {
             'hasFilling': input['hasFilling'],
             'hasNutsToppingOption': input['hasNutsToppingOption'],
-        })
+        }
     else:
-        product.update({
+        product |= {
             'hasCreamOnTopOption': input['hasCreamOnTopOption'],
             'hasServeOnIceOption': input['hasServeOnIceOption'],
-        })
+        }
     products.append(product)
     return product
 

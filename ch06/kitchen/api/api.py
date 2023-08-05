@@ -25,8 +25,7 @@ schedules = []
 def validate_schedule(schedule):
     schedule = copy.deepcopy(schedule)
     schedule["scheduled"] = schedule["scheduled"].isoformat()
-    errors = GetScheduledOrderSchema().validate(schedule)
-    if errors:
+    if errors := GetScheduledOrderSchema().validate(schedule):
         raise ValidationError(errors)
 
 
@@ -41,7 +40,7 @@ class KitchenSchedules(MethodView):
         if not parameters:
             return {"schedules": schedules}
 
-        query_set = [schedule for schedule in schedules]
+        query_set = list(schedules)
 
         cancelled = parameters.get("cancelled")
         if cancelled is not None:

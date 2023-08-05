@@ -22,8 +22,7 @@ class OrdersRepository:
     def list(self, limit=None, **filters):
         query = self.session.query(OrderModel)
         if 'cancelled' in filters:
-            cancelled = filters.pop('cancelled')
-            if cancelled:
+            if cancelled := filters.pop('cancelled'):
                 query = query.filter(OrderModel.status == 'cancelled')
             else:
                 query = query.filter(OrderModel.status != 'cancelled')

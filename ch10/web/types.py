@@ -25,9 +25,7 @@ def parse_datetime_scalar(date):
 
 @product_type.type_resolver
 def resolve_product_type(obj, *_):
-    if "hasFilling" in obj:
-        return "Cake"
-    return "Beverage"
+    return "Cake" if "hasFilling" in obj else "Beverage"
 
 
 @product_interface.field("ingredients")

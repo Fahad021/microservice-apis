@@ -22,7 +22,7 @@ def get_orders(cancelled: Optional[bool] = None, limit: Optional[int] = None):
     if cancelled is None and limit is None:
         return {"orders": orders}
 
-    query_set = [order for order in orders]
+    query_set = list(orders)
 
     if cancelled is not None:
         if cancelled:

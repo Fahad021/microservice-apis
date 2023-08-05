@@ -27,7 +27,7 @@ def get_page(items, items_per_page, page):
 
 @query.field('products')
 def resolve_products(*_, input=None):
-    filtered = [product for product in products]
+    filtered = list(products)
     if input is None:
         return filtered
     filtered = [
